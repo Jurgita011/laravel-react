@@ -22,8 +22,8 @@ ul.netwoks  {
         width: 60px;
         height: 60px;
         &.active {
-            border: 1px solid rgb(209, 14, 53);
-            color: rgb(233, 8, 184);
+            border: 1px solid crimson;
+            color: skyblue;
         }
     }
 }
@@ -45,12 +45,33 @@ ul.netwoks  {
         font-family: monospace;
         transition: all 0.3s ease;
         &.success {
-           // background-color: rgba(4, 147, 11, 0.5);
             background-color: rgba(0,255,0,0.5);
         }
         &.error {
-           // background-color: rgba(134, 240, 5, 0.5);
-           background-color: rgba(255,0,0,0.5);
-        }
+            background-color: rgba(255,0,0,0.5);
         }
     }
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    .right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+}
+
+.modal {
+    display: block;
+    background-color: rgba(0,0,0,0.5);
+}

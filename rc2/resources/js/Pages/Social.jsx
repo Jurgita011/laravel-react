@@ -1,10 +1,12 @@
 // import bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import '../../sass/style.scss';
-import'../../sass/style.scss';
+import '../../sass/style.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import Delete from '@/Social/Delete';
+import Edit from '@/Social/Edit';
 
 export default function Social({ storeUrl, listUrl }) {
 
@@ -13,6 +15,9 @@ export default function Social({ storeUrl, listUrl }) {
     const [network, setNetwork] = useState('');
     const [messages, setMessages] = useState([]);
     const [persons, setPersons] = useState(null);
+
+    const [deletePerson, setDeletePerson] = useState(null);
+    const [editPerson, setEditPerson] = useState(null)
 
     useEffect(() => {
         axios.get(listUrl)
@@ -69,6 +74,7 @@ export default function Social({ storeUrl, listUrl }) {
                     delete person.stored;
                     person.id = res.data.id;
                     addMessage('Person stored', 'success');
+
                 }
                 else {
                     setPersons(p => p.filter(p => p.id !== uuid));
@@ -120,10 +126,13 @@ export default function Social({ storeUrl, listUrl }) {
 
                                 {
                                     persons && persons.map(person =>
-                                        <li key={person.id} className="list-group-item">
-                                            {person.name}
-                                            <span className="badge bg-primary rounded-pill">{person.age}</span>
-                                            <span className="badge bg-secondary rounded-pill">{person.social}</span>
+                                        <li>
+                                            <div className="left">
+                                                {person.name}
+                                                <span className="badge bg-primary rounded-pill">{person.age}</span>
+                                                <span className="badge bg-secondary rounded-pill">{person.social}</span>
+                                            </div>
+                                         
                                         </li>
                                     )
 
@@ -144,6 +153,8 @@ export default function Social({ storeUrl, listUrl }) {
                     )
                 }
             </div>
+            {/* <Delete deletePerson={deletePerson} setDeletePerson={setDeletePerson} destroy={destroy} /> */}
+            {/* <Edit editPerson={editPerson} setEditPerson={setEditPerson} update={update}/> */}
         </div>
     );
 }
